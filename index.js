@@ -23,12 +23,18 @@ async function run() {
     await client.connect();
     const database = client.db("bd_travel");
     const servicesCollection = database.collection("services");
+    const moreCollection = database.collection("more");
 
     // Get Products API
     app.get("/services", async (req, res) => {
       const cursor = servicesCollection.find({});
       const services = await cursor.toArray();
       res.send(services);
+    });
+    app.get("/more", async (req, res) => {
+      const cursor = moreCollection.find({});
+      const more = await cursor.toArray();
+      res.send(more);
     });
   } finally {
     // await client.close();
