@@ -24,6 +24,7 @@ async function run() {
     const database = client.db("bd_travel");
     const servicesCollection = database.collection("services");
     const moreCollection = database.collection("more");
+    const recentCollection = database.collection("recent");
 
     // Get Products API
     app.get("/services", async (req, res) => {
@@ -35,6 +36,11 @@ async function run() {
       const cursor = moreCollection.find({});
       const more = await cursor.toArray();
       res.send(more);
+    });
+    app.get("/recent", async (req, res) => {
+      const cursor = recentCollection.find({});
+      const recent = await cursor.toArray();
+      res.send(recent);
     });
   } finally {
     // await client.close();
