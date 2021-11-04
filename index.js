@@ -25,6 +25,7 @@ async function run() {
     const servicesCollection = database.collection("services");
     const moreCollection = database.collection("more");
     const recentCollection = database.collection("recent");
+    const travelsWayCollection = database.collection("travels_way");
 
     // Get Products API
     app.get("/services", async (req, res) => {
@@ -41,6 +42,11 @@ async function run() {
       const cursor = recentCollection.find({});
       const recent = await cursor.toArray();
       res.send(recent);
+    });
+    app.get("/travels_way", async (req, res) => {
+      const cursor = travelsWayCollection.find({});
+      const travels_way = await cursor.toArray();
+      res.send(travels_way);
     });
   } finally {
     // await client.close();
