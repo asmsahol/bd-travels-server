@@ -25,7 +25,7 @@ async function run() {
     const moreCollection = database.collection("more");
     const recentCollection = database.collection("recent");
     const travelsWayCollection = database.collection("travels_way");
-    const sliderImageCollection = database.collection("slider");
+    const sliderCollection = database.collection("slider");
 
     // Get Products API
     app.get("/services", async (req, res) => {
@@ -49,10 +49,9 @@ async function run() {
       res.send(travels_way);
     });
     app.get("/slider", async (req, res) => {
-      const cursor = sliderImageCollection.find({});
+      const cursor = sliderCollection.find({});
       const slider = await cursor.toArray();
       res.send(slider);
-      console.log(slider);
     });
   } finally {
     // await client.close();
