@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.apmnd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-console.log(uri);
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -26,6 +25,7 @@ async function run() {
     const moreCollection = database.collection("more");
     const recentCollection = database.collection("recent");
     const travelsWayCollection = database.collection("travels_way");
+    const sliderImageCollection = database.collection("slider");
 
     // Get Products API
     app.get("/services", async (req, res) => {
@@ -47,6 +47,12 @@ async function run() {
       const cursor = travelsWayCollection.find({});
       const travels_way = await cursor.toArray();
       res.send(travels_way);
+    });
+    app.get("/slider", async (req, res) => {
+      const cursor = sliderImageCollection.find({});
+      const slider = await cursor.toArray();
+      res.send(slider);
+      console.log(slider);
     });
   } finally {
     // await client.close();
