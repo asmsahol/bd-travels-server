@@ -27,6 +27,12 @@ async function run() {
     const travelsWayCollection = database.collection("travels_way");
     const sliderCollection = database.collection("slider");
 
+    // Post Products API
+    app.post("/services", async (req, res) => {
+      const result = await servicesCollection.insertOne(req.body);
+      res.send(result);
+    });
+
     // Get Products API
     app.get("/services", async (req, res) => {
       const cursor = servicesCollection.find({});
