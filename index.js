@@ -26,10 +26,16 @@ async function run() {
     const recentCollection = database.collection("recent");
     const travelsWayCollection = database.collection("travels_way");
     const sliderCollection = database.collection("slider");
+    const bookingCollection = database.collection("booking");
 
     // Post Products API
     app.post("/services", async (req, res) => {
       const result = await servicesCollection.insertOne(req.body);
+      res.send(result);
+    });
+
+    app.post("/confirm_order", async (req, res) => {
+      const result = await bookingCollection.insertOne(req.body);
       res.send(result);
     });
 
