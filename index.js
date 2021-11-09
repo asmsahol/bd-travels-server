@@ -65,6 +65,11 @@ async function run() {
       const slider = await cursor.toArray();
       res.send(slider);
     });
+    app.get("/booking", async (req, res) => {
+      const cursor = bookingCollection.find({});
+      const booking = await cursor.toArray();
+      res.send(booking);
+    });
   } finally {
     // await client.close();
   }
