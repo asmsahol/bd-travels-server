@@ -75,7 +75,6 @@ async function run() {
     // Get Single Booking
     app.get("/booking/:id", async (req, res) => {
       const id = req.params.id;
-      console.log(id);
       const query = { _id: ObjectId(id) };
       const order = await bookingCollection.findOne(query);
       res.send(order);
@@ -85,7 +84,6 @@ async function run() {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await bookingCollection.deleteOne(query);
-      console.log("deletting user with id", result);
       res.json(result);
     });
   } finally {
